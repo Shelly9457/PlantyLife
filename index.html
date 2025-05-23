@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planty Life</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a7529b4dc6.js" crossorigin="anonymous"></script>
+    <!-- 字形 -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/3.5.13/vue.global.min.js'
+        integrity='sha512-rgrFBaGRHjj2cy6RtcWr21S4oSicNV/Y3qACuRZZIVdi6hGIXOKZeFTtzFFZCJ7cI4OrwbY7/FGVvaJ5hXJdJg=='
+        crossorigin='anonymous'></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div class="app">
+        <nav
+            class="bg-[#5C715E]/80 p-5 w-full sm:w-[80%] fixed top-0 sm:left-[10%] backdrop-blur-lg z-99 sm:rounded-bl-xl sm:rounded-br-xl duration-300">
+            <div class="container mx-auto flex flex-col sm:flex-row justify-between sm:items-center">
+                <div class="flex items-center">
+                    <h1 class="text-(--light) text-3xl en">Planty Life</h1>
+                    <div class="w-7 h-5 flex flex-col justify-between sm:hidden cursor-pointer ml-auto"
+                        @click="toggle_nav">
+                        <span class="h-1 w-7 bg-(--light) line line1"></span>
+                        <span class="h-1 w-7 bg-(--light) line line2"></span>
+                        <span class="h-1 w-7 bg-(--light) line line3"></span>
+                    </div>
+                </div>
+                <ul class="flex sm:my-0 link_box overflow-hidden w-0 sm:w-auto h-0 sm:h-auto">
+                    <li class="text-(--light) me-3 sm:mx-3 mt-4 sm:mt-0 text-lg"><a href="#product">精選商品</a></li>
+                    <li class="text-(--light) me-3 sm:mx-3 mt-4 sm:mt-0 text-lg"><a href="#about">品牌理念</a></li>
+                    <li class="text-(--light) me-3 sm:mx-3 mt-4 sm:mt-0 text-lg"><a href="#footer">聯絡我們</a></li>
+                </ul>
+            </div>
+        </nav>
+        <header>
+            <section class="flex min-h-screen w-full">
+                <article class="w-full relative">
+                    <div class="flex">
+                        <h1
+                            class="en text-6xl text-center md:text-end text-(--light) md:text-(--dark) mt-25 md:me-2 w-[50%]">
+                            Planty</h1>
+                        <h1 class="en text-6xl text-center md:text-start text-(--light) mt-25 z-1 md:ms-2 w-[50%]">Life
+                        </h1>
+                    </div>
+                    <div class="container w-[80%] ms-[10%] flex flex-col justify-center h-[82vh]">
+                        <h1 class="text-5xl md:text-6xl text-(--light) md:text-(--dark) leading-25">
+                            讓生活，<br>
+                            慢下來一點
+                        </h1>
+                        <a href="#product"
+                            class="rounded-full text-md sm:text-xl bg-[#5C715E]/80 px-5 py-3 text-(--light) mr-auto my-10 cursor-pointer inline-block btn overflow-hidden relative z-0">
+                            逛逛選物
+                            <i class="fa-solid fa-arrow-right duration-500"></i>
+                        </a>
+                    </div>
+                    <img src="./images/bg.png"
+                        class="absolute top-0 right-0 w-full md:w-[50%] h-screen object-cover z-[-1]">
+                </article>
+            </section>
+        </header>
+        <main>
+            <section id="product" class="min-h-screen bg-(--middle) flex flex-col">
+                <div class="mx-auto pt-25 w-[80%] flex flex-col justify-around flex-1">
+                    <h1 class="text-5xl text-(--light)">精選商品</h1>
+                    <div
+                        class="grid grid-cols-2 auto-rows-auto sm:grid-cols-8 sm:grid-rows-2 my-8 w-full lg:w-[80%] mx-auto gap-4 sm:max-h-[60vh] p_box">
+                        <div class="col-span-2 row-span-1  sm:col-start-4 sm:col-span-5 relative overflow-hidden">
+                            <img src="images/product4.png" class="w-full h-full object-cover duration-500">
+                        </div>
+                        <div class="row-start-3 sm:row-span-full sm:col-span-3 relative overflow-hidden">
+                            <img src="images/product1.png" class="w-full h-full object-cover duration-500">
+                        </div>
+                        <div class="row-span-1 sm:row-start-2 sm:col-span-3 relative overflow-hidden">
+                            <img src="images/product2.png" class="w-full h-full object-cover duration-500">
+                        </div>
+                        <div class="col-start-2 row-span-2 sm:row-start-2 sm:col-span-2 relative overflow-hidden">
+                            <img src="images/product3.png" class="w-full h-[94%] object-cover duration-500">
+                        </div>
+                    </div>
+                    <a href="product.html"
+                        class="rounded-full text-md sm:text-xl bg-[#F6F1EB]/80 px-5 py-3 text-(--dark) lg:ml-[10%] mr-auto cursor-pointer inline-block overflow-hidden relative z-0 btn p_btn">
+                        查看更多
+                        <i class="fa-solid fa-arrow-right duration-500"></i>
+                    </a>
+                </div>
+            </section>
+            <section id="about" class="min-h-screen bg-linear-to-b from-(--middle) to-(--dark) flex flex-col">
+                <div class="mx-auto pt-25 w-[80%] flex flex-col flex-1">
+                    <h1 class="text-5xl text-(--light) text-center">品牌理念</h1>
+                    <div class="mx-auto flex flex-1 items-center flex-wrap">
+                        <div class="w-full md:w-[50%]">
+                            <img src="./images/pepole.png" class="w-[90%] lg:w-[80%] block mx-auto md:mx-0">
+                        </div>
+                        <div class="w-full md:w-[50%] flex items-center">
+                            <h1 class="text-xl lg:text-3xl text-(--light) leading-auto md:leading-15">我們相信<br>
+                                綠意能為生活帶來療癒與靜謐Planty Life 精選植物與居家選物<br>
+                                用簡單的自然感<br>
+                                陪你一起打造柔軟、有溫度的日常空間<br>
+                                讓生活慢下來一點，也更貼近自己
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="bg-(--dark) min-h-[40vh]  text-(--light) flex flex-col py-25" id="footer">
+            <h1 class="text-5xl ms-[10%]">聯絡我們</h1>
+            <div class="w-[80%] mx-auto flex flex-1 flex-wrap">
+                <div class="w-full lg:w-[50%] text-4xl mt-5">
+                    <i class="fa-brands fa-instagram me-5"></i>
+                    <i class="fa-brands fa-facebook me-5"></i>
+                    <i class="fa-brands fa-threads me-5"></i>
+                    <i class="fa-brands fa-line me-5"></i>
+                </div>
+                <div
+                    class="w-full lg:w-[50%] flex flex-col justify-end items-start xl:items-center gap-5 mt-3 lg:mt-0 text-xl md:text-2xlh">
+                    <h1 class="flex items-center">
+                        <i class="fa-solid fa-phone me-2"></i>
+                        電話：02-1234-5678
+                    </h1>
+                    <h1 class="flex items-center">
+                        <i class="fa-solid fa-house me-2"></i>
+                        地址：100台北市中正區濟南路一段321號
+                    </h1>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="/data.js"></script>
+    <script src="/index.js"></script>
+</body>
+
+</html>

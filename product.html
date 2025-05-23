@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planty Life</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a7529b4dc6.js" crossorigin="anonymous"></script>
+    <!-- 字形 -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/3.5.13/vue.global.min.js'
+        integrity='sha512-rgrFBaGRHjj2cy6RtcWr21S4oSicNV/Y3qACuRZZIVdi6hGIXOKZeFTtzFFZCJ7cI4OrwbY7/FGVvaJ5hXJdJg=='
+        crossorigin='anonymous'></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div class="app">
+        <nav
+            class="bg-[#5C715E]/80 p-5 w-full sm:w-[80%] fixed top-0 sm:left-[10%] backdrop-blur-lg z-99 sm:rounded-bl-xl sm:rounded-br-xl duration-300">
+            <div class="container mx-auto flex justify-between sm:items-center">
+                <h1 class="text-(--light) text-3xl en">Planty Life</h1>
+                <ul class="flex link_box">
+                    <li class="bg-(--light) flex items-center text-(--dark) px-4 py-1 rounded-full">
+                        <i class="fa-solid fa-cart-shopping me-2"></i>
+                        <h1 class="">0</h1>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <header class="bg-(--middle)">
+            <section class="w-[80%] mx-auto pt-25">
+                <a href="index.html" class="text-xl text-(--light)">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    返回首頁
+                </a>
+                <h1 class="text-3xl lg:text-5xl text-(--light) text-center py-25">精選生活植物與選物 為空間注入綠意</h1>
+            </section>
+        </header>
+        <main class="bg-linear-to-b from-(--middle) to-(--dark)">
+            <div class="w-[80%] mx-auto">
+                <div class="flex w-full justify-around flex-wrap" v-for="(item,index) in products">
+                    <div
+                        class="text-(--light) w-full lg:w-[25%] flex flex-row lg:flex-col justify-start lg:justify-around">
+                        <h1 class="text-2xl xl:text-4xl" v-html="item.name"></h1>
+                        <h1 class="text-lg xl:text-2xl hidden lg:block" v-html="item.description"></h1>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex gap-7 overflow-hidden">
+                            <div class="bg-(--light) min-w-[40%] sm:min-w-[10%] sm:w-[33.333%] py-5 px-8 mx-2 my-4 flex-1 flex justify-center items-center rounded-xl cursor-pointer "
+                                v-for="(product,i) in item.products" ref="item" onclick="open_product(index,i)">
+                                <img :src=" product.img" class="h-[100%] object-cover" onclick="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+<script src="data.js"></script>
+<script src="index.js"></script>
+
+</html>
