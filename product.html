@@ -41,20 +41,26 @@
             </section>
         </header>
         <main class="bg-linear-to-b from-(--middle) to-(--dark)">
-            <div class="w-[80%] mx-auto">
+            <div class="sm:w-[80%] w-full mx-auto">
                 <div class="flex w-full justify-around flex-wrap" v-for="(item,index) in products">
                     <div
-                        class="text-(--light) w-full lg:w-[25%] flex flex-row lg:flex-col justify-start lg:justify-around">
+                        class="text-(--light) w-full lg:w-[25%] flex flex-row lg:flex-col justify-start lg:justify-around ms-2">
                         <h1 class="text-2xl xl:text-4xl" v-html="item.name"></h1>
                         <h1 class="text-lg xl:text-2xl hidden lg:block" v-html="item.description"></h1>
                     </div>
-                    <div class="flex-1">
-                        <div class="flex gap-7 overflow-hidden">
-                            <div class="bg-(--light) min-w-[40%] sm:min-w-[10%] sm:w-[33.333%] py-5 px-8 mx-2 my-4 flex-1 flex justify-center items-center rounded-xl cursor-pointer "
-                                v-for="(product,i) in item.products" ref="item" onclick="open_product(index,i)">
-                                <img :src=" product.img" class="h-[100%] object-cover" onclick="">
+                    <div class="flex-1 flex">
+                        <i class="fa-solid fa-chevron-left mx-2 sm:mx-5 cursor-pointer my-auto text-(--light)"
+                            @click="move(-1,index)"></i>
+                        <div class="flex flex-1 overflow-hidden">
+                            <div class="flex flex-1 duration-500 track" :data-move="0" ref="box">
+                                <div class="min-w-[calc(100%_-_0.26em_*_4)] sm:min-w-[calc(50%_-_0.26em_*_10)] xl:min-w-[calc(33.333%_-_0.26em_*_10)] mx-2 sm:mx-5 bg-(--light) py-5 px-4 h-60 w-[80%] my-4 flex justify-center items-center rounded-xl cursor-pointer"
+                                    v-for="(product,i) in item.products" @click="open_product(index,i,$event)">
+                                    <img :src=" product.img" class="h-[100%] object-cover">
+                                </div>
                             </div>
                         </div>
+                        <i class="fa-solid fa-chevron-right mx-2 sm:mx-5 cursor-pointer my-auto text-(--light)"
+                            @click="move(1,index)"></i>
                     </div>
                 </div>
             </div>

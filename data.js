@@ -15,6 +15,11 @@ const products_data = [{
     "name": "療癒豆豆蔓",
     "description": "療癒觸感 | 帶來安心與放鬆<br>簡單喜悅 | 為平凡的日子帶來一絲小確幸",
     "img": "images/p1-3.png"
+  },
+  {
+    "name": "療癒豆豆蔓",
+    "description": "療癒觸感 | 帶來安心與放鬆<br>簡單喜悅 | 為平凡的日子帶來一絲小確幸",
+    "img": "images/p1-3.png"
   }]
 }, {
   "name": "花器 <br> Pots & Planters",
@@ -33,12 +38,31 @@ const products_data = [{
     "name": "霧藍懸掛盆器組（2入）",
     "description": "空氣之舞 | 讓綠意在空中飄逸生長<br>淡然北歐 | 色調與輪廓構築自在美感",
     "img": "images/p2-3.png"
+  },
+  {
+    "name": "玻璃煙燻圓瓶（中型）",
+    "description": "光影交錯 | 模糊了邊界也柔化了心緒<br>靜謐角落 | 適合留給最溫柔的綠意",
+    "img": "images/p2-2.png"
   }]
 },
 {
   "name": "居家小物 <br> Lifestyle Goods",
   "description": "小物不只是配角<br>它們讓綠意日常變得更<br>可愛、更完整",
   "products": [{
+    "name": "植物插畫卡片組（4入）",
+    "description": "手繪溫度 | 把生活的片段收藏起來<br>植物語言 | 每一張都開成回憶裡的花",
+    "img": "images/p3-1.png"
+  },
+  {
+    "name": "琥珀玻璃噴霧瓶（300ml）",
+    "description": "日常節奏 | 噴灑的不只是水也是儀式<br>溫柔氣泡 | 是你與植物的親密對話",
+    "img": "images/p3-2.png"
+  },
+  {
+    "name": "木紋綠植書籤",
+    "description": "自然旅伴 | 在每一次翻頁中種下片刻寧靜<br>語錄相伴 | 讓閱讀時光也染上一抹綠",
+    "img": "images/p3-3.png"
+  }, {
     "name": "植物插畫卡片組（4入）",
     "description": "手繪溫度 | 把生活的片段收藏起來<br>植物語言 | 每一張都開成回憶裡的花",
     "img": "images/p3-1.png"

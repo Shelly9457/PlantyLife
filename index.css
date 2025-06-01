@@ -7,6 +7,12 @@ html {
     scroll-behavior: smooth;
 }
 
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 :root {
     --dark: #5C715E;
     --middle: #A4C3B2;
