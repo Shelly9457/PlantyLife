@@ -14,7 +14,7 @@ html {
 }
 
 :root {
-    --dark: #5C715E;
+    --dark: rgb(92, 112, 94);
     --middle: #A4C3B2;
     --light: #F6F1EB;
 }
@@ -121,4 +121,36 @@ nav.active {
 
 .p_box>div:hover>img {
     transform: scale(1.2) translate(-20px, 20px);
+}
+
+.m_btn {
+    background-color: var(--dark);
+    border-radius: 9px;
+    cursor: pointer;
+    color: var(--light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal {
+    z-index: -1;
+    opacity: 0;
+    transition: all 500ms;
+}
+
+.modal.active {
+    z-index: 1;
+    opacity: 100;
+}
+
+.ok_box {
+    transform: translateY(500%);
+    opacity: 0;
+    transition: all 700ms;
+}
+
+.ok_box.active {
+    transform: translateY(0%);
+    opacity: 1;
 }

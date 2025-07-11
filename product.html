@@ -40,11 +40,11 @@
                 <h1 class="text-3xl lg:text-5xl text-(--light) text-center py-25">精選生活植物與選物 為空間注入綠意</h1>
             </section>
         </header>
-        <main class="bg-linear-to-b from-(--middle) to-(--dark)">
+        <main class="bg-linear-to-b from-(--middle) to-(--dark) pb-3">
             <div class="sm:w-[80%] w-full mx-auto">
                 <div class="flex w-full justify-around flex-wrap" v-for="(item,index) in products">
                     <div
-                        class="text-(--light) w-full lg:w-[25%] flex flex-row lg:flex-col justify-start lg:justify-around ms-2">
+                        class="text-(--light) w-full lg:w-[25%] flex flex-row lg:flex-col justify-start lg:justify-around ms-2 border-b-2 border-(---light)">
                         <h1 class="text-2xl xl:text-4xl" v-html="item.name"></h1>
                         <h1 class="text-lg xl:text-2xl hidden lg:block" v-html="item.description"></h1>
                     </div>
@@ -55,7 +55,7 @@
                             <div class="flex flex-1 duration-500 track" :data-move="0" ref="box">
                                 <div class="min-w-[calc(100%_-_0.26em_*_4)] sm:min-w-[calc(50%_-_0.26em_*_10)] xl:min-w-[calc(33.333%_-_0.26em_*_10)] mx-2 sm:mx-5 bg-(--light) py-5 px-4 h-60 w-[80%] my-4 flex justify-center items-center rounded-xl cursor-pointer"
                                     v-for="(product,i) in item.products" @click="open_product(index,i,$event)">
-                                    <img :src=" product.img" class="h-[100%] object-cover">
+                                    <img :src="product.img" class="h-[100%] object-cover">
                                 </div>
                             </div>
                         </div>
@@ -65,6 +65,29 @@
                 </div>
             </div>
         </main>
+        <div class="modal w-full h-screen fixed top-0 left-0 box" ref="p_modal">
+            <div class="absolute w-full h-full top-0 left-0 bg-[#5C715E]/70" @click="toggle_modal"></div>
+            <div
+                class="modal_container bg-(--light) w-3xl h-[50vh] rounded-xl relative mx-4 box gap-6 flex-col sm:flex-row">
+                <i class="fa-solid fa-xmark absolute top-10 right-10 text-(--dark) text-2xl cursor-pointer"
+                    @click="toggle_modal"></i>
+                <img :src="current_modal.img" class="w-[20%] sm:w-[30%]">
+                <div class="text-(--dark) flex flex-col justify-around h-[60%]">
+                    <h1 class="text-4xl">{{current_modal.name}}</h1>
+                    <p class="text-xl" v-html="current_modal.description"></p>
+                    <p class="text-2xl">$ {{current_modal.price}}</p>
+                    <div class="flex items-center justify-center sm:justify-start text-xl gap-3">
+                        <div class="m_btn py-1 px-3" @click="add_amount(-1)">-</div>
+                        <input class="mx-2 w-[15%] text-center" :value="current_modal.amount" disabled>
+                        <div class="m_btn py-1 px-3" @click="add_amount(1)">+</div>
+                    </div>
+                    <div class="m_btn py-3 text-xl" @click="add_order">加入購物車</div>
+                </div>
+            </div>
+        </div>
+        <div class="ok_box bg-(--light) fixed bottom-5 right-5 z-99 px-3 py-2 rounded-lg" ref="ok_box">
+            <h3 class="text-(--dark) text-lg">已加入購物車<i class="fa-solid fa-check ps-2"></i></h3>
+        </div>
     </div>
 </body>
 <script src="data.js"></script>
