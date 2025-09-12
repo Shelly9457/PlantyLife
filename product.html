@@ -23,10 +23,10 @@
             class="bg-[#5C715E]/80 p-5 w-full sm:w-[80%] fixed top-0 sm:left-[10%] backdrop-blur-lg z-99 sm:rounded-bl-xl sm:rounded-br-xl duration-300">
             <div class="container mx-auto flex justify-between sm:items-center">
                 <h1 class="text-(--light) text-3xl en">Planty Life</h1>
-                <ul class="flex link_box">
+                <ul class="flex link_box cursor-pointer" @click="toggle_modal('o_modal')">
                     <li class="bg-(--light) flex items-center text-(--dark) px-4 py-1 rounded-full">
                         <i class="fa-solid fa-cart-shopping me-2"></i>
-                        <h1 class="">0</h1>
+                        <h1 class="" ref="order_mount">{{}}</h1>
                     </li>
                 </ul>
             </div>
@@ -66,11 +66,11 @@
             </div>
         </main>
         <div class="modal w-full h-screen fixed top-0 left-0 box" ref="p_modal">
-            <div class="absolute w-full h-full top-0 left-0 bg-[#5C715E]/70" @click="toggle_modal"></div>
+            <div class="absolute w-full h-full top-0 left-0 bg-[#5C715E]/70" @click="toggle_modal('p_modal')"></div>
             <div
                 class="modal_container bg-(--light) w-3xl h-[50vh] rounded-xl relative mx-4 box gap-6 flex-col sm:flex-row">
                 <i class="fa-solid fa-xmark absolute top-10 right-10 text-(--dark) text-2xl cursor-pointer"
-                    @click="toggle_modal"></i>
+                    @click="toggle_modal('p_modal')"></i>
                 <img :src="current_modal.img" class="w-[20%] sm:w-[30%]">
                 <div class="text-(--dark) flex flex-col justify-around h-[60%]">
                     <h1 class="text-4xl">{{current_modal.name}}</h1>
@@ -81,7 +81,37 @@
                         <input class="mx-2 w-[15%] text-center" :value="current_modal.amount" disabled>
                         <div class="m_btn py-1 px-3" @click="add_amount(1)">+</div>
                     </div>
-                    <div class="m_btn py-3 text-xl" @click="add_order">加入購物車</div>
+                    <div class="m_btn py-3 text-xl" @click="add_order(current_modal)">加入購物車</div>
+                </div>
+            </div>
+        </div>
+        <div class="ok_box bg-(--light) fixed bottom-5 right-5 z-99 px-3 py-2 rounded-lg" ref="ok_box">
+            <h3 class="text-(--dark) text-lg">已加入購物車<i class="fa-solid fa-check ps-2"></i></h3>
+        </div>
+        <div class="modal w-full h-screen fixed top-0 left-0 box order" ref="o_modal">
+            <div class="absolute w-full h-full top-0 left-0 bg-[#5C715E]/70" @click="toggle_modal('o_modal')"></div>
+            <div
+                class="modal_container bg-(--light) w-3xl h-[60vh] rounded-xl relative mx-4 flex items-center gap-6 flex-col overflow-auto">
+                <i class="fa-solid fa-xmark absolute top-5 right-5 sm:right-10 text-(--dark) text-lg sm:text-2xl cursor-pointer"
+                    @click="toggle_modal('o_modal')"></i>
+                <h1 class="text-(--dark) text-4xl mt-4">購物清單</h1>
+                <div class="box mx-3" v-for="(item,index) in order">
+                    <img src="./images/p1-1.png" class="w-[20%] object-cover">
+                    <div class="box flex-col">
+                        <h1 class="text-lg sm:text-2xl my-2">{{item.name}}</h1>
+                        <div class="box">
+                            <div class="m_btn py-1 px-3" @click="add_order_amount(-1,item.id)">-</div>
+                            <input class="mx-2 w-[15%] text-center" :value="item.amount" disabled>
+                            <div class="m_btn py-1 px-3" @click="add_order_amount(1,item.id)">+</div>
+                        </div>
+                    </div>
+                    <h1 class="text-lg sm:text-2xl">${{item.price}}</h1>
+                    <i class="fa-solid fa-trash-can text-red-500 cursor-pointer text-xl ms-5"></i>
+                </div>
+                <div class="box w-[80%] absolute bottom-2 justify-center border-t-2 border-(--dark)">
+                    <h1 class="text-xl sm:text-3xl text-(--dark) text-end py-3">共210元
+                    </h1>
+                    <div class="m_btn py-1 px-3 my-3 ms-3 sm:right-10" @click="add_amount(-1)">去結帳</div>
                 </div>
             </div>
         </div>

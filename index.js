@@ -6,7 +6,7 @@ const app = Vue.createApp({
             current_modal: "",
             current_index: "",
             current_i: "",
-            order: [],
+            order: []
         }
     },
     methods: {
@@ -47,15 +47,15 @@ const app = Vue.createApp({
             return item.getBoundingClientRect().width + marginLeft + marginRight;
         },
         open_product(index, i, e) {
-            this.toggle_modal();
+            this.toggle_modal('p_modal');
             this.current_index = index
             this.current_i = i
             this.current_modal = JSON.parse(JSON.stringify(this.products[index].products[i]));
         },
-        toggle_modal() {
+        toggle_modal(refName) {
             if (this.lock) return
             this.lock = true
-            this.$refs.p_modal.classList.toggle("active");
+            this.$refs[refName].classList.toggle("active");
             setTimeout(() => {
                 this.lock = false
             }, 300);
@@ -63,14 +63,24 @@ const app = Vue.createApp({
         add_amount(n) {
             this.current_modal.amount = Math.max(0, this.current_modal.amount + n);
         },
-        add_order() {
-            this.products[this.current_index].products[this.current_i].amount = this.current_modal.amount
-            this.toggle_modal();
+        add_order_amount(n, id) {
+            this.current_modal.amount = Math.max(1, this.current_modal.amount + n);
+        },
+        add_order(product) {
+            this.products[this.current_index].products[this.current_i].amount = product.amount
+            const exist = this.order.find(item => item.id === product.id);
+            console.log(exist);
+            if (exist) {
+                exist.amount = product.amount
+            } else {
+                this.order.push(product)
+            }
+            this.toggle_modal('p_modal');
             this.$refs.ok_box.classList.add('active')
             setTimeout(() => {
                 this.$refs.ok_box.classList.remove('active')
-            }, 1200);
-        }
+            }, 2000);
+        },
     }
 }).mount(".app");
 
