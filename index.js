@@ -67,18 +67,14 @@ const app = Vue.createApp({
             item.amount = Math.max(1, item.amount + n);
         },
         add_order(product) {
-            console.log(this.current_modal);
-            
             this.products[this.current_index].products[this.current_i].amount = product.amount
             const exist = this.order.find(item => item.id === product.id);
             if (exist) {
                 exist.amount = product.amount
-                if (exist.amount <= 0) {
-                    this.order = this.order.filter(item => item.id !== product.id);
-                }
             } else {
                 this.order.push(product)
             }
+            this.order = this.order.filter(item => item.amount > 0);
             this.toggle_modal('p_modal');
             this.$refs.ok_box.classList.add('active')
             setTimeout(() => {
