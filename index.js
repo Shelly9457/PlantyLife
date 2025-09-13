@@ -63,15 +63,19 @@ const app = Vue.createApp({
         add_amount(n) {
             this.current_modal.amount = Math.max(0, this.current_modal.amount + n);
         },
-        add_order_amount(n, id) {
-            this.current_modal.amount = Math.max(1, this.current_modal.amount + n);
+        add_order_amount(n, item) {
+            item.amount = Math.max(1, item.amount + n);
         },
         add_order(product) {
+            console.log(this.current_modal);
+            
             this.products[this.current_index].products[this.current_i].amount = product.amount
             const exist = this.order.find(item => item.id === product.id);
-            console.log(exist);
             if (exist) {
                 exist.amount = product.amount
+                if (exist.amount <= 0) {
+                    this.order = this.order.filter(item => item.id !== product.id);
+                }
             } else {
                 this.order.push(product)
             }
