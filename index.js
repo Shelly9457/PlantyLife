@@ -63,16 +63,14 @@ const app = Vue.createApp({
         add_amount(n) {
             this.current_modal.amount = Math.max(0, this.current_modal.amount + n);
         },
-        add_order_amount(n, item) {
-            item.amount = Math.max(1, item.amount + n);
-        },
         add_order(product) {
-            this.products[this.current_index].products[this.current_i].amount = product.amount
+            const current = this.products[this.current_index].products[this.current_i]
+            current.amount = product.amount
             const exist = this.order.find(item => item.id === product.id);
             if (exist) {
-                exist.amount = product.amount
+                exist.amount = current.amount
             } else {
-                this.order.push(product)
+                this.order.push(current)
             }
             this.order = this.order.filter(item => item.amount > 0);
             this.toggle_modal('p_modal');
@@ -81,6 +79,14 @@ const app = Vue.createApp({
                 this.$refs.ok_box.classList.remove('active')
             }, 2000);
         },
+        add_order_amount(n, item) {
+            item.amount = Math.max(0, item.amount + n);
+            this.order = this.order.filter(item => item.amount > 0);
+        },
+        remove_order() {
+            
+        }
+
     }
 }).mount(".app");
 
