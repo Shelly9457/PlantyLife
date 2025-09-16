@@ -72,7 +72,7 @@ const app = Vue.createApp({
             } else {
                 this.order.push(current)
             }
-            this.order = this.order.filter(item => item.amount > 0);
+            this.clear_order()
             this.toggle_modal('p_modal');
             this.$refs.ok_box.classList.add('active')
             setTimeout(() => {
@@ -81,12 +81,23 @@ const app = Vue.createApp({
         },
         add_order_amount(n, item) {
             item.amount = Math.max(0, item.amount + n);
-            this.order = this.order.filter(item => item.amount > 0);
+            this.clear_order(item)
         },
-        remove_order() {
-            
+        remove_order(item) {
+            item.amount = 0
+            this.clear_order()
+        },
+        clear_order() {
+            this.order = this.order.filter(item => item.amount > 0);
         }
+    },
+    computed: {
+        total() {
+            return this.order.reduce((sum, item) => {
+                return sum + item.price * item.amount
+            }, 0)
 
+        }
     }
 }).mount(".app");
 

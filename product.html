@@ -96,7 +96,7 @@
                     @click="toggle_modal('o_modal')"></i>
                 <h1 class="text-(--dark) text-4xl mt-4">購物清單</h1>
                 <div class="box mx-3" v-for="(item,index) in order">
-                    <img src="./images/p1-1.png" class="w-[20%] object-cover">
+                    <img :src="item.img" class="w-[20%] object-cover">
                     <div class="box flex-col">
                         <h1 class="text-lg sm:text-2xl my-2">{{item.name}}</h1>
                         <div class="box">
@@ -105,11 +105,11 @@
                             <div class="m_btn py-1 px-3" @click="add_order_amount(1,item)">+</div>
                         </div>
                     </div>
-                    <h1 class="text-lg sm:text-2xl">${{item.price}}</h1>
-                    <i class="fa-solid fa-trash-can text-red-500 cursor-pointer text-xl ms-5" @click="remove_order"></i>
+                    <h1 class="text-lg sm:text-2xl">${{item.price * item.amount}}</h1>
+                    <i class="fa-solid fa-trash-can text-red-500 cursor-pointer text-xl ms-5" @click="remove_order(item)"></i>
                 </div>
-                <div class="box w-[80%] absolute bottom-2 justify-center border-t-2 border-(--dark)">
-                    <h1 class="text-xl sm:text-3xl text-(--dark) text-end py-3">共210元
+                <div class="box w-[80%]  bottom-2 justify-center border-t-2 border-(--dark)">
+                    <h1 class="text-xl sm:text-3xl text-(--dark) text-end py-3">共${{total}}元
                     </h1>
                     <div class="m_btn py-1 px-3 my-3 ms-3 sm:right-10" @click="add_amount(-1)">去結帳</div>
                 </div>
