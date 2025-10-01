@@ -65,53 +65,85 @@
                 </div>
             </div>
         </main>
+        <footer class="bg-(--dark) min-h-[40vh]  text-(--light) flex flex-col py-25" id="footer">
+            <h1 class="text-5xl ms-[10%]">聯絡我們</h1>
+            <div class="w-[80%] mx-auto flex flex-1 flex-wrap">
+                <div class="w-full lg:w-[50%] text-4xl mt-5">
+                    <i class="fa-brands fa-instagram me-5"></i>
+                    <i class="fa-brands fa-facebook me-5"></i>
+                    <i class="fa-brands fa-threads me-5"></i>
+                    <i class="fa-brands fa-line me-5"></i>
+                </div>
+                <div
+                    class="w-full lg:w-[50%] flex flex-col justify-end items-start xl:items-center gap-5 mt-3 lg:mt-0 text-xl md:text-2xlh">
+                    <h1 class="flex items-center">
+                        <i class="fa-solid fa-phone me-2"></i>
+                        電話：02-1234-5678
+                    </h1>
+                    <h1 class="flex items-center">
+                        <i class="fa-solid fa-house me-2"></i>
+                        地址：100台北市中正區濟南路一段321號
+                    </h1>
+                </div>
+            </div>
+        </footer>
         <div class="modal w-full h-screen fixed top-0 left-0 box" ref="p_modal">
             <div class="absolute w-full h-full top-0 left-0 bg-[#5C715E]/70" @click="toggle_modal('p_modal')"></div>
             <div
-                class="modal_container bg-(--light) w-3xl h-[50vh] rounded-xl relative mx-4 box gap-6 flex-col sm:flex-row">
+                class="modal_container bg-(--light) w-3xl min-h-[50vh] rounded-xl relative mx-4 box gap-6 flex-col sm:flex-row sm:py-0 p-5">
                 <i class="fa-solid fa-xmark absolute top-10 right-10 text-(--dark) text-2xl cursor-pointer"
                     @click="toggle_modal('p_modal')"></i>
-                <img :src="current_modal.img" class="w-[20%] sm:w-[30%]">
+                <img :src="current_modal.img" class=" w-[30%]">
                 <div class="text-(--dark) flex flex-col justify-around h-[60%]">
-                    <h1 class="text-4xl">{{current_modal.name}}</h1>
-                    <p class="text-xl" v-html="current_modal.description"></p>
-                    <p class="text-2xl">$ {{current_modal.price}}</p>
-                    <div class="flex items-center justify-center sm:justify-start text-xl gap-3">
+                    <h1 class="text-2xl sm:text-3xl">{{current_modal.name}}</h1>
+                    <p class="text-md sm:text-lg" v-html="current_modal.description"></p>
+                    <p class="text-xl sm:text-2xl">$ {{current_modal.price}}</p>
+                    <div class="flex items-center justify-center sm:justify-start text-xl gap-3 my-3">
                         <div class="m_btn py-1 px-3" @click="add_amount(-1)">-</div>
                         <input class="mx-2 w-[15%] text-center" :value="current_modal.amount" disabled>
                         <div class="m_btn py-1 px-3" @click="add_amount(1)">+</div>
                     </div>
-                    <div class="m_btn py-3 text-xl" @click="add_order(current_modal)">加入購物車</div>
+                    <div class="m_btn py-2  text-md sm:text-lg" @click="add_order(current_modal)">加入購物車</div>
                 </div>
             </div>
         </div>
         <div class="ok_box bg-(--light) fixed bottom-5 right-5 z-99 px-3 py-2 rounded-lg" ref="ok_box">
-            <h3 class="text-(--dark) text-lg">已加入購物車<i class="fa-solid fa-check ps-2"></i></h3>
+            <h3 class="text-(--light) text-lg">已加入購物車<i class="fa-solid fa-check ps-2"></i></h3>
         </div>
         <div class="modal w-full h-screen fixed top-0 left-0 box order" ref="o_modal">
             <div class="absolute w-full h-full top-0 left-0 bg-[#5C715E]/70" @click="toggle_modal('o_modal')"></div>
             <div
-                class="modal_container bg-(--light) w-3xl h-[60vh] rounded-xl relative mx-4 flex items-center gap-6 flex-col overflow-auto">
-                <i class="fa-solid fa-xmark absolute top-5 right-5 sm:right-10 text-(--dark) text-lg sm:text-2xl cursor-pointer"
+                class="modal_container bg-(--dark) w-3xl h-[60vh] rounded-xl relative mx-4 flex items-center gap-6 flex-col overflow-auto">
+                <i class="fa-solid fa-xmark absolute top-5 right-5 sm:right-10 text-(--light) text-lg sm:text-2xl cursor-pointer"
                     @click="toggle_modal('o_modal')"></i>
-                <h1 class="text-(--dark) text-4xl mt-4">購物清單</h1>
-                <div class="box mx-3" v-for="(item,index) in order">
-                    <img :src="item.img" class="w-[20%] object-cover">
-                    <div class="box flex-col">
+                <h1 class="text-(--light) text-4xl mt-4">購物清單</h1>
+                <div class="box mx-3 text-(--light)" v-for="(item,index) in order">
+                    <div class="bg-(--light) rounded-lg w-[30%] sm:w-[35%] px-3 py-2">
+                        <img :src="item.img" class="w-full object-cover">
+                    </div>
+                    <div class="flex-col ms-4">
                         <h1 class="text-lg sm:text-2xl my-2">{{item.name}}</h1>
-                        <div class="box">
-                            <div class="m_btn py-1 px-3" @click="add_order_amount(-1,item)">-</div>
-                            <input class="mx-2 w-[15%] text-center" :value="item.amount" disabled>
-                            <div class="m_btn py-1 px-3" @click="add_order_amount(1,item)">+</div>
+                        <h1 class="text-lg sm:text-2xl my-2">${{item.price}}</h1>
+                        <div class="flex justify-between items-center">
+                            <div class="flex justify-start items-center flex-1 text-sm sm:text-lg">
+                                <div class="py-1 px-3 bg-(--light) text-(--dark) rounded-full cursor-pointer"
+                                    @click="add_order_amount(-1,item)">-
+                                </div>
+                                <input class="mx-2 w-[15%] text-center" :value="item.amount" disabled>
+                                <div class="py-1 px-3 bg-(--light) text-(--dark) rounded-full cursor-pointer"
+                                    @click="add_order_amount(1,item)">+
+                                </div>
+                            </div>
+                            <h1 class="text-lg sm:text-2xl">NT{{item.price * item.amount}}</h1>
+                            <i class="fa-solid fa-trash-can text-red-500 cursor-pointer text-xl ms-5"
+                                @click="remove_order(item)"></i>
                         </div>
                     </div>
-                    <h1 class="text-lg sm:text-2xl">${{item.price * item.amount}}</h1>
-                    <i class="fa-solid fa-trash-can text-red-500 cursor-pointer text-xl ms-5" @click="remove_order(item)"></i>
                 </div>
-                <div class="box w-[80%]  bottom-2 justify-center border-t-2 border-(--dark)">
-                    <h1 class="text-xl sm:text-3xl text-(--dark) text-end py-3">共${{total}}元
+                <div class="box w-[80%]  bottom-2 justify-center border-t-2 border-(--light)">
+                    <h1 class="text-xl sm:text-3xl text-(--light) text-end py-3">共${{total}}元
                     </h1>
-                    <div class="m_btn py-1 px-3 my-3 ms-3 sm:right-10" @click="add_amount(-1)">去結帳</div>
+                    <div class="text-(--dark) bg-(--light) rounded-lg py-1 px-3 m-3 cursor-pointer sm:right-10" @click="add_amount(-1)">去結帳</div>
                 </div>
             </div>
         </div>
