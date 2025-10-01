@@ -117,8 +117,8 @@
                 <i class="fa-solid fa-xmark absolute top-5 right-5 sm:right-10 text-(--light) text-lg sm:text-2xl cursor-pointer"
                     @click="toggle_modal('o_modal')"></i>
                 <h1 class="text-(--light) text-4xl mt-4">購物清單</h1>
-                <div class="box mx-3 text-(--light)" v-for="(item,index) in order">
-                    <div class="bg-(--light) rounded-lg w-[30%] sm:w-[35%] px-3 py-2">
+                <div class="box mx-3 text-(--light) w-[90%]" v-for="(item,index) in order">
+                    <div class="bg-(--light) rounded-lg w-[30%] sm:w-[20%] px-3 py-2">
                         <img :src="item.img" class="w-full object-cover">
                     </div>
                     <div class="flex-col ms-4">
